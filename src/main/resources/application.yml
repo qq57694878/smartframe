@@ -1,0 +1,17 @@
+server:
+  port: 8080
+  servlet:
+    path: /api
+
+spring:
+  jackson:
+    default-property-inclusion: non_null
+    serialization:
+      INDENT_OUTPUT: true
+
+
+
+jwt:
+  header: Authorization
+  secret: mySecret
+  expiration: 604800
