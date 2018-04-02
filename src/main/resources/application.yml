@@ -1,14 +1,23 @@
 server:
   port: 8080
   servlet:
-    path: /api
+    context-path: /api
 
 spring:
   jackson:
     default-property-inclusion: non_null
     serialization:
       INDENT_OUTPUT: true
+  datasource:
+    url: jdbc:mysql://localhost:3306/test?useUnicode=true&characterEncoding=UTF-8
+    username: db_test
+    password: db_test
+    driver-class-name: com.mysql.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: create-drop
 
+      
 
 
 jwt:

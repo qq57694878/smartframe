@@ -12,8 +12,7 @@ public class Article implements Serializable {
 
     @Id
     @Column(name = "ID")
-    @GeneratedValue(strategy = GenerationType.SEQUENCE, generator = "article_seq")
-    @SequenceGenerator(name = "article_seq", sequenceName = "article_seq", allocationSize = 102)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @Column(name = "TITLE", length = 2000)
