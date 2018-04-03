@@ -13,6 +13,10 @@ spring:
     username: db_test
     password: db_test
     driver-class-name: com.mysql.jdbc.Driver
+  redis:
+    host: 47.75.36.103
+    password: 123456
+    port: 6379
   jpa:
     hibernate:
       ddl-auto: create-drop
@@ -20,6 +24,7 @@ spring:
     properties:
       hibernate:
         dialect: com.jldata.smartframe.core.common.MySQL5DialectUTF8
+    database: mysql
 
 
 jwt:

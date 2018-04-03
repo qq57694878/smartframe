@@ -7,9 +7,12 @@
     <groupId>com.jldata</groupId>
     <artifactId>com.jldata.smartframe</artifactId>
     <version>1.0-SNAPSHOT</version>
+
     <modules>
         <module>smartapp</module>
         <module>resttest</module>
     </modules>
+
+
 
 </project>
