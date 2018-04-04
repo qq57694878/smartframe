@@ -1,0 +1,25 @@
+= *接口文档*
+
+= 1.demo查询列表文档
+
+.request
+include::{snippets}/TestDemoController/testList/http-request.adoc[]
+
+.response
+include::{snippets}/TestDemoController/testList/http-response.adoc[]
+
+= 2.JPA查询列表接口
+
+.request
+include::{snippets}/TestJPAController/testList/http-request.adoc[]
+
+.response
+include::{snippets}/TestJPAController/testList/http-response.adoc[]
+
+= 3.JPA查询列表接口
+
+.request
+include::{snippets}/TestJPAController/testListPage/http-request.adoc[]
+
+.response
+include::{snippets}/TestJPAController/testListPage/http-response.adoc[]

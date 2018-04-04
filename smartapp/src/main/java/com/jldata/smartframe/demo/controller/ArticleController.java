@@ -30,9 +30,15 @@ public class ArticleController {
         }
         return true;
     }
+
+    /**
+     * jpa 原始方式实现分页查询列表
+     * @param requestMap
+     * @return
+     */
     @RequestMapping("table/list")
     @PreAuthorize("hasRole('ADMIN')")
-    public RestResult listData(@RequestBody Map<String,String> requestMap){
+    public RestResult listData(@RequestBody Map<String,Object> requestMap){
         int pageNum=1;
         int pageSize =10;
             String spageNum = String.valueOf(requestMap.get("page"));
@@ -45,8 +51,56 @@ public class ArticleController {
             }
         pageNum=pageNum-1;
         PageRequest pageRequest = PageRequest.of(pageNum,pageSize);
-        Page<Article> page = articleService.findArticleByTitle(requestMap.get("word"),pageRequest);
+        Page<Article> page = articleService.findArticleByTitleJPA(requestMap,pageRequest);
          return new RestResult(page);
+    }
+
+    /**
+     * jpa封装的形式实现查询列表
+     * @param requestMap
+     * @return
+     */
+    @RequestMapping("table/listFilter")
+    @PreAuthorize("hasRole('ADMIN')")
+    public RestResult listFilter(@RequestBody Map<String,Object> requestMap){
+        int pageNum=1;
+        int pageSize =10;
+        String spageNum = String.valueOf(requestMap.get("page"));
+        String spageSize =String.valueOf(requestMap.get("size"));
+        if(isnotnull(spageNum)){
+            pageNum = Integer.parseInt(spageNum);
+        }
+        if(isnotnull(spageSize)){
+            pageSize =Integer.parseInt(spageSize);
+        }
+        pageNum=pageNum-1;
+        PageRequest pageRequest = PageRequest.of(pageNum,pageSize);
+        Page<Article> page = articleService.findArticleByTitleFilter(requestMap,pageRequest);
+        return new RestResult(page);
+    }
+
+    /**
+     * jdbcTemplate方式实现查询列表
+     * @param requestMap
+     * @return
+     */
+    @RequestMapping("table/listJdbc")
+    @PreAuthorize("hasRole('ADMIN')")
+    public RestResult listJdbc(@RequestBody Map<String,Object> requestMap){
+        int pageNum=0;
+        int pageSize =10;
+        String spageNum = String.valueOf(requestMap.get("page"));
+        String spageSize =String.valueOf(requestMap.get("size"));
+        if(isnotnull(spageNum)){
+            pageNum = Integer.parseInt(spageNum);
+        }
+        if(isnotnull(spageSize)){
+            pageSize =Integer.parseInt(spageSize);
+        }
+        pageNum=pageNum-1;
+        PageRequest pageRequest = PageRequest.of(pageNum,pageSize);
+        Page<Article> page = articleService.findArticleByTitleJdbc(requestMap,pageRequest);
+        return new RestResult(page);
     }
     @RequestMapping("table/get")
     @PreAuthorize("hasRole('ADMIN')")

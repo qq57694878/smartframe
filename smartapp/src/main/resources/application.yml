@@ -5,6 +5,8 @@ server:
 
 spring:
   jackson:
+    date-format: yyyy-MM-dd HH:mm:ss
+    time-zone: GMT+8
     default-property-inclusion: non_null
     serialization:
       INDENT_OUTPUT: true
@@ -25,7 +27,6 @@ spring:
       hibernate:
         dialect: com.jldata.smartframe.core.common.MySQL5DialectUTF8
     database: mysql
-
 
 jwt:
   header: Authorization
