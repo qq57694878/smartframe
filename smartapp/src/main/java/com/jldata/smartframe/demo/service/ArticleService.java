@@ -25,6 +25,7 @@ import java.util.Map;
 public class ArticleService {
     @Autowired
     private ArticleRepository articleRepository;
+
     @Autowired
     private JdbcPageKit jdbcPageKit;
     /**

@@ -70,7 +70,7 @@ public class JdbcPageImpl {
         }
         String sql = dialect.forPaginate(pageNumber, pageSize, findSql);
         List list = jdbcTemplate.queryForList(sql,paras);
-        return new PageImpl(list, PageRequest.of(pageNumber-1,pageSize),totalRow);
+        return new PageImpl(list, PageRequest.of(pageNumber,pageSize),totalRow);
     }
 
 

@@ -45,7 +45,7 @@ public class JdbcController {
             params.add("%"+word+"%");
             params.add("%"+word+"%");
         }
-        Page page = jdbcPageKit.paginate(pageNum,pageSize,sql.toString(),params.toArray());
+        Page page = jdbcPageKit.paginate(pageNum-1,pageSize,sql.toString(),params.toArray());
         return new RestResult(page);
     }
 

@@ -18,11 +18,13 @@ import java.util.Date;
 import java.util.Map;
 
 @RestController
+@RequestMapping("/article")
 public class ArticleController {
     @Autowired
     private ArticleService articleService;
     @Autowired
     private ArticleRepository articleRepository;
+
 
     private boolean isnotnull(String s){
         if(s==null||s.length()==0||"null".equals(s)){
@@ -36,7 +38,7 @@ public class ArticleController {
      * @param requestMap
      * @return
      */
-    @RequestMapping("table/list")
+    @RequestMapping("/list")
     @PreAuthorize("hasRole('ADMIN')")
     public RestResult listData(@RequestBody Map<String,Object> requestMap){
         int pageNum=1;
@@ -60,7 +62,7 @@ public class ArticleController {
      * @param requestMap
      * @return
      */
-    @RequestMapping("table/listFilter")
+    @RequestMapping("/listFilter")
     @PreAuthorize("hasRole('ADMIN')")
     public RestResult listFilter(@RequestBody Map<String,Object> requestMap){
         int pageNum=1;
@@ -84,7 +86,7 @@ public class ArticleController {
      * @param requestMap
      * @return
      */
-    @RequestMapping("table/listJdbc")
+    @RequestMapping("/listJdbc")
     @PreAuthorize("hasRole('ADMIN')")
     public RestResult listJdbc(@RequestBody Map<String,Object> requestMap){
         int pageNum=0;
@@ -102,32 +104,31 @@ public class ArticleController {
         Page<Article> page = articleService.findArticleByTitleJdbc(requestMap,pageRequest);
         return new RestResult(page);
     }
-    @RequestMapping("table/get")
+    @RequestMapping("/get")
     @PreAuthorize("hasRole('ADMIN')")
     public RestResult findOne(@RequestBody Long id){
         Article article = articleRepository.findById(id).get();
         return new RestResult(article);
     }
-    @RequestMapping("table/delete")
+    @RequestMapping("/delete")
     @PreAuthorize("hasRole('ADMIN')")
     public RestResult delete(@RequestBody Long id){
         articleRepository.deleteById(id);
         return new RestResult("");
     }
-    @RequestMapping("table/update")
+    @RequestMapping("/update")
     @PreAuthorize("hasRole('ADMIN')")
     public RestResult update(@RequestBody Article article){
         Article o = articleRepository.findById(article.getId()).get();
         BeanMapperKit.copy(article,o);
-
-        articleRepository.save(o);
-        return new RestResult("");
+        articleRepository.saveAndFlush(o);
+        return new RestResult(o);
     }
-    @RequestMapping("table/add")
+    @RequestMapping("/add")
     @PreAuthorize("hasRole('ADMIN')")
     public RestResult add(@RequestBody Article article){
         article.setCreateDate(new Date());
-        articleRepository.save(article);
-        return new RestResult("");
+        articleRepository.saveAndFlush(article);
+        return new RestResult(article);
     }
 }
