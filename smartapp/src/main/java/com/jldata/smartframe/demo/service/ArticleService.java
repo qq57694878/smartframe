@@ -24,7 +24,7 @@ public class ArticleService {
     private ArticleRepository articleRepository;
     public Page<Article> findArticleByTitle(String word, Pageable pageRequest){
         Sort sort = new Sort(Sort.Direction.DESC,"id");
-        Pageable pageable = new PageRequest(pageRequest.getPageNumber(),pageRequest.getPageSize(),sort);
+        Pageable pageable =  PageRequest.of(pageRequest.getPageNumber(),pageRequest.getPageSize(),sort);
 /*        return articleRepository.findAll(pageable);*/
         Page<Article> page  =articleRepository.findAll(new Specification<Article>() {
             @Override

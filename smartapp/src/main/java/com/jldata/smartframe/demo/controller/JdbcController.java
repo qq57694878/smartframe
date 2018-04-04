@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 @RestController
@@ -36,8 +37,15 @@ public class JdbcController {
         if(isnotnull(spageSize)){
             pageSize =Integer.parseInt(spageSize);
         }
-        String sql  ="select * from article";
-        Page page = jdbcPageKit.paginate(pageNum,pageSize,sql);
+        List<Object> params = new ArrayList<Object>();
+        StringBuilder sql  = new StringBuilder("select * from article where 1=1 ");
+        if(requestMap.get("word")!=null){
+            String word = String.valueOf(requestMap.get("word"));
+            sql.append("and (title like ? or content like ? )");
+            params.add("%"+word+"%");
+            params.add("%"+word+"%");
+        }
+        Page page = jdbcPageKit.paginate(pageNum,pageSize,sql.toString(),params.toArray());
         return new RestResult(page);
     }
 

@@ -27,9 +27,9 @@ public class TestJdbcController extends TestRestBussinessBase {
     @Test
     public void testListPage() throws IOException {
         Map<String,Object> param = new HashMap<String,Object>();
-        param.put("pageNum","3");
+        param.put("pageNum","1");
         param.put("pageSize","10");
-        param.put("word","");
+        param.put("word","1");
         Response r = RestAssured.given(this.spec).contentType("application/json").header(TOKEN,this.token).body(objectMapper.writeValueAsString(param))
                 .post(""+PRE_PATH+"/jdbc/listpage");
         r.then().statusCode(200).body("errcode", Matchers.equalTo(200));
