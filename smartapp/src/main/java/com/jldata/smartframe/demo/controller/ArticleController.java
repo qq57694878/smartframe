@@ -35,8 +35,8 @@ public class ArticleController {
     public RestResult listData(@RequestBody Map<String,String> requestMap){
         int pageNum=1;
         int pageSize =10;
-            String spageNum = String.valueOf(requestMap.get("pageNum"));
-            String spageSize =String.valueOf(requestMap.get("pageSize"));
+            String spageNum = String.valueOf(requestMap.get("page"));
+            String spageSize =String.valueOf(requestMap.get("size"));
             if(isnotnull(spageNum)){
                 pageNum = Integer.parseInt(spageNum);
             }
@@ -44,7 +44,7 @@ public class ArticleController {
                 pageSize =Integer.parseInt(spageSize);
             }
         pageNum=pageNum-1;
-        PageRequest pageRequest = new PageRequest(pageNum,pageSize);
+        PageRequest pageRequest = PageRequest.of(pageNum,pageSize);
         Page<Article> page = articleService.findArticleByTitle(requestMap.get("word"),pageRequest);
          return new RestResult(page);
     }

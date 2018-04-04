@@ -30,9 +30,8 @@ public class JPAService{
         //创建匹配器，即如何使用查询条件
         ExampleMatcher matcher = ExampleMatcher.matching() //构建对象
                 .withMatcher("title", ExampleMatcher.GenericPropertyMatchers.contains()) //姓名采用“开始匹配”的方式查询
-                .withMatcher("content", ExampleMatcher.GenericPropertyMatchers.caseSensitive())
+                .withMatcher("content", ExampleMatcher.GenericPropertyMatchers.contains())
                 .withIgnorePaths("focus");  //忽略属性：是否关注。因为是基本类型，需要忽略掉
-
         //创建实例
         Example<Article> ex = Example.of(article, matcher);
         Sort sort = new Sort(Sort.Direction.ASC,"id");
@@ -41,11 +40,7 @@ public class JPAService{
         return articleRepository.findAll(ex,pageRequest);
     }
 
-    public Page<Article> selectArticleListSpecification(Map<String,Object>param) {
-
-        Sort sort = new Sort(Sort.Direction.ASC,"id");
-
-        Pageable pageable = new PageRequest(0,2,sort);
+    public Page<Article> selectArticleListSpecification(Map<String,Object>param, Pageable pageable) {
         final String cond = (String)param.get("word");
         return articleRepository.findAll(new Specification<Article>() {
             @Override

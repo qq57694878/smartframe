@@ -29,8 +29,8 @@ public class JdbcController {
     public RestResult listpage(@RequestBody Map<String,Object> requestMap){
         int pageNum=1;
         int pageSize =10;
-        String spageNum = String.valueOf(requestMap.get("pageNum"));
-        String spageSize =String.valueOf(requestMap.get("pageSize"));
+        String spageNum = String.valueOf(requestMap.get("page"));
+        String spageSize =String.valueOf(requestMap.get("size"));
         if(isnotnull(spageNum)){
             pageNum = Integer.parseInt(spageNum);
         }

@@ -10,16 +10,16 @@ import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
 
-public class TestJdbcController extends TestRestBussinessBase {
+public class TestJPAController extends TestRestBussinessBase {
 
     @Test
     public void testList() throws IOException {
         Map<String,Object> param = new HashMap<String,Object>();
         param.put("page","1");
         param.put("size","10");
-        param.put("word","");
+        param.put("word","1");
         Response r = RestAssured.given(this.spec).contentType("application/json").header(TOKEN,this.token).body(objectMapper.writeValueAsString(param))
-                .post(""+PRE_PATH+"/jdbc/list");
+                .post(""+PRE_PATH+"/jpa/list");
         r.then().statusCode(200).body("errcode", Matchers.equalTo(200));
         r.prettyPrint();
 
@@ -27,11 +27,12 @@ public class TestJdbcController extends TestRestBussinessBase {
     @Test
     public void testListPage() throws IOException {
         Map<String,Object> param = new HashMap<String,Object>();
-        param.put("page","1");
+        param.put("page","2");
         param.put("size","10");
-        param.put("word","1");
+        param.put("filter_CONTAINS_title","1");
+        param.put("filter_CONTAINS_content","1");
         Response r = RestAssured.given(this.spec).contentType("application/json").header(TOKEN,this.token).body(objectMapper.writeValueAsString(param))
-                .post(""+PRE_PATH+"/jdbc/listpage");
+                .post(""+PRE_PATH+"/jpa/listFilter");
         r.then().statusCode(200).body("errcode", Matchers.equalTo(200));
         r.prettyPrint();
 
