@@ -32,3 +32,9 @@ jwt:
   header: Authorization
   secret: mySecret
   expiration: 604800
+
+logging:
+  level:
+    root: warn
+    org.springframework.web: debug
+    org.hibernate: error

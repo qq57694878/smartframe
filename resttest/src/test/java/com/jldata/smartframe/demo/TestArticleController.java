@@ -81,4 +81,33 @@ public class TestArticleController extends TestRestBussinessBase {
         r.prettyPrint();
     }
 
+    @Test
+    public void testfindByTitleORContent() throws IOException {
+        Map<String,Object> param = new HashMap<String,Object>();
+        param.put("word","1");
+        Response r = RestAssured.given(this.spec).contentType("application/json").header(TOKEN,this.token).body(objectMapper.writeValueAsString(param))
+                .post(""+PRE_PATH+"/article/findByTitleORContent");
+        r.then().statusCode(200).body("errcode", Matchers.equalTo(200));
+        r.prettyPrint();
+    }
+
+    @Test
+    public void testqueryByTitleORContent() throws IOException {
+        Map<String,Object> param = new HashMap<String,Object>();
+        param.put("word","%1%");
+        Response r = RestAssured.given(this.spec).contentType("application/json").header(TOKEN,this.token).body(objectMapper.writeValueAsString(param))
+                .post(""+PRE_PATH+"/article/queryByTitleORContent");
+        r.then().statusCode(200).body("errcode", Matchers.equalTo(200));
+        r.prettyPrint();
+    }
+    @Test
+    public void testqueryObjectByTitleORContent() throws IOException {
+        Map<String,Object> param = new HashMap<String,Object>();
+        param.put("word","%1%");
+        Response r = RestAssured.given(this.spec).contentType("application/json").header(TOKEN,this.token).body(objectMapper.writeValueAsString(param))
+                .post(""+PRE_PATH+"/article/queryObjectByTitleORContent");
+        r.then().statusCode(200).body("errcode", Matchers.equalTo(200));
+        r.prettyPrint();
+    }
+
 }

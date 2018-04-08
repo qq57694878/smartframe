@@ -1,34 +1,16 @@
 package com.jldata.smartframe.demo.vo;
 
-import javax.persistence.*;
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Date;
 
-@Entity
-@Table(name = "ARTICLE")
 public class Article implements Serializable {
 
-
-    @Id
-    @Column(name = "ID")
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(name = "TITLE", length = 2000)
-    @NotNull
     private String title;
-
-    @Column(name = "CONTENT", length = 4000)
-    @NotNull
 
     private String content;
 
-
-
-    @Column(name = "CREATE_DATE")
-    @Temporal(TemporalType.TIMESTAMP)
-    @NotNull
     private Date createDate;
 
 

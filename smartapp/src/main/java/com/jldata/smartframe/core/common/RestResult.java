@@ -32,7 +32,7 @@ public class RestResult implements Serializable {
     public RestResult(int errcode,String errmsg) {
         this.errcode = errcode;
         this.errmsg = errmsg;
-        this.data = new Object();
+        this.data = "";
     }
 
     public int getErrcode() {
