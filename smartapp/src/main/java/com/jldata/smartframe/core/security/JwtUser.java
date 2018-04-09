@@ -12,15 +12,19 @@ import java.util.Date;
  */
 public class JwtUser implements UserDetails {
 
-    private final Long id;
-    private final String username;
-    private final String firstname;
-    private final String lastname;
-    private final String password;
-    private final String email;
-    private final Collection<? extends GrantedAuthority> authorities;
-    private final boolean enabled;
-    private final Date lastPasswordResetDate;
+    private  Long id;
+    private  String username;
+    private  String firstname;
+    private  String lastname;
+    private  String password;
+    private  String email;
+    private  Collection<? extends GrantedAuthority> authorities;
+    private  boolean enabled;
+    private  Date lastPasswordResetDate;
+
+    public JwtUser(){
+
+    }
 
     public JwtUser(
           Long id,
@@ -43,7 +47,7 @@ public class JwtUser implements UserDetails {
         this.lastPasswordResetDate = lastPasswordResetDate;
     }
 
-    @JsonIgnore
+
     public Long getId() {
         return id;
     }

@@ -2,11 +2,12 @@ package com.jldata.smartframe.core.simple.model;
 
 import javax.persistence.*;
 import javax.validation.constraints.NotNull;
+import java.io.Serializable;
 import java.util.List;
 
 @Entity
 @Table(name = "AUTHORITY")
-public class Authority {
+public class Authority implements Serializable{
 
     @Id
     @Column(name = "ID")
@@ -18,8 +19,8 @@ public class Authority {
     @Enumerated(EnumType.STRING)
     private AuthorityName name;
 
-    @ManyToMany(mappedBy = "authorities", fetch = FetchType.LAZY)
-    private List<User> users;
+ /*   @ManyToMany(mappedBy = "authorities", fetch = FetchType.LAZY)
+    private List<User> users;*/
 
     public Long getId() {
         return id;
@@ -37,11 +38,11 @@ public class Authority {
         this.name = name;
     }
 
-    public List<User> getUsers() {
+/*    public List<User> getUsers() {
         return users;
     }
 
     public void setUsers(List<User> users) {
         this.users = users;
-    }
+    }*/
 }

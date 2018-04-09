@@ -65,7 +65,7 @@ public class JwtAuthenticationTokenFilter extends OncePerRequestFilter {
         logger.info("检查用户权限： " + username);
         if (username != null && SecurityContextHolder.getContext().getAuthentication() == null) {
 
-            //从数据库内读用户数据，TODO :需改造成从cache中读
+
             UserDetails userDetails = this.userDetailsService.loadUserByUsername(username);
 
             //验证token

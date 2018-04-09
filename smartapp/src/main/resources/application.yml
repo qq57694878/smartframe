@@ -15,6 +15,15 @@ spring:
     username: ${maven.db.username}
     password: ${maven.db.password}
     driver-class-name: ${maven.db.driver}
+  cache:
+    type: redis
+    cache-names: userdetail,cache1
+    redis:
+      cache-null-values: true
+      key-prefix: userdetail_
+      time-to-live: 0ms
+      use-key-prefix: true
+
   redis:
     host: ${maven.redis.host}
     password: ${maven.redis.password}
@@ -35,6 +44,6 @@ jwt:
 
 logging:
   level:
-    root: warn
+    root: info
     org.springframework.web: debug
     org.hibernate: error
