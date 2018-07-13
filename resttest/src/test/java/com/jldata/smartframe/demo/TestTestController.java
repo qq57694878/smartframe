@@ -4,6 +4,7 @@ import com.jldata.smartframe.base.TestRestBussinessBase;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.hamcrest.Matchers;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
 
 import java.io.IOException;
@@ -50,7 +51,7 @@ public class TestTestController extends TestRestBussinessBase {
     public void testrequired() throws IOException {
         Response r = RestAssured.given(this.spec).contentType("application/json").header(TOKEN,this.token)
                 .post(""+PRE_PATH+"/test/required");
-        r.then().statusCode(200).body("errcode", Matchers.equalTo(500));
+        r.then().statusCode(200).body("errcode", Matchers.equalTo(200));
         r.prettyPrint();
     }
 }

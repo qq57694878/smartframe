@@ -4,12 +4,14 @@ import com.jldata.smartframe.base.TestRestBussinessBase;
 import io.restassured.RestAssured;
 import io.restassured.response.Response;
 import org.hamcrest.Matchers;
+import org.junit.FixMethodOrder;
 import org.junit.Test;
+import org.junit.runners.MethodSorters;
 
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Map;
-
+@FixMethodOrder(MethodSorters.NAME_ASCENDING)
 public class TestArticleController extends TestRestBussinessBase {
 
     @Test
@@ -50,16 +52,21 @@ public class TestArticleController extends TestRestBussinessBase {
         r.prettyPrint();
     }
     @Test
-    public void testdelete() throws IOException {
-        Response r = RestAssured.given(this.spec).contentType("application/json").header(TOKEN,this.token).body(objectMapper.writeValueAsString(2))
-                .post(""+PRE_PATH+"/article/delete");
+    public void test1add() throws IOException {
+        Map<String,Object> param = new HashMap<String,Object>();
+        param.put("id",666);
+        param.put("title","标题111");
+        param.put("content","内容111");
+        param.put("createDate","2018-01-01 00:00:00");
+        Response r = RestAssured.given(this.spec).contentType("application/json").header(TOKEN,this.token).body(objectMapper.writeValueAsString(param))
+                .post(""+PRE_PATH+"/article/add");
         r.then().statusCode(200).body("errcode", Matchers.equalTo(200));
         r.prettyPrint();
     }
     @Test
-    public void testupdate() throws IOException {
+    public void test2update() throws IOException {
         Map<String,Object> param = new HashMap<String,Object>();
-        param.put("id","1");
+        param.put("id",666);
         param.put("title","标题修改1");
         param.put("content","内容修改1");
         param.put("createDate","2018-01-01 00:00:00");
@@ -69,17 +76,14 @@ public class TestArticleController extends TestRestBussinessBase {
         r.prettyPrint();
     }
     @Test
-    public void testadd() throws IOException {
-        Map<String,Object> param = new HashMap<String,Object>();
-        param.put("id","111");
-        param.put("title","标题111");
-        param.put("content","内容111");
-        param.put("createDate","2018-01-01 00:00:00");
-        Response r = RestAssured.given(this.spec).contentType("application/json").header(TOKEN,this.token).body(objectMapper.writeValueAsString(param))
-                .post(""+PRE_PATH+"/article/add");
+    public void test3delete() throws IOException {
+        Response r = RestAssured.given(this.spec).contentType("application/json").header(TOKEN,this.token).body(objectMapper.writeValueAsString(666))
+                .post(""+PRE_PATH+"/article/delete");
         r.then().statusCode(200).body("errcode", Matchers.equalTo(200));
         r.prettyPrint();
     }
+
+
 
     @Test
     public void testfindByTitleORContent() throws IOException {

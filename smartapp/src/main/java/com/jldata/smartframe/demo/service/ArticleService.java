@@ -37,6 +37,7 @@ public class ArticleService {
     public Page<Article> findArticleByTitleJPA(Map<String,Object> requestMap, Pageable pageRequest){
         Sort sort = new Sort(Sort.Direction.DESC,"id");
         Pageable pageable =  PageRequest.of(pageRequest.getPageNumber(),pageRequest.getPageSize(),sort);
+
         Page<Article> page  =articleRepository.findAll(new Specification<Article>() {
             final String word = (String)requestMap.get("word");
             @Override

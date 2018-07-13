@@ -2,11 +2,6 @@
 
 = 1.demo查询列表文档
 
-.request
-include::{snippets}/TestDemoController/testList/http-request.adoc[]
-
-.response
-include::{snippets}/TestDemoController/testList/http-response.adoc[]
 
 = 2.JPA查询列表接口
 
@@ -23,3 +18,41 @@ include::{snippets}/TestJPAController/testListPage/http-request.adoc[]
 
 .response
 include::{snippets}/TestJPAController/testListPage/http-response.adoc[]
+
+= 4.ArticleController接口
+= 4.1.testList接口
+.request
+include::{snippets}/TestArticleController/testList/http-request.adoc[]
+
+.response
+include::{snippets}/TestArticleController/testList/http-response.adoc[]
+
+= 4.2.testlistFilter接口
+.request
+include::{snippets}/TestArticleController/testlistFilter/http-request.adoc[]
+
+.response
+include::{snippets}/TestArticleController/ttestlistFilter/http-response.adoc[]
+
+= 4.3.testlistJdbc接口
+.request
+include::{snippets}/TestArticleController/testlistJdbc/http-request.adoc[]
+
+.response
+include::{snippets}/TestArticleController/testlistJdbc/http-response.adoc[]
+
+
+= 4.4.testget接口
+.request
+include::{snippets}/TestArticleController/testget/http-request.adoc[]
+
+.response
+include::{snippets}/TestArticleController/testget/http-response.adoc[]
+
+
+= 4.5.test3delete接口
+.request
+include::{snippets}/TestArticleController/test3delete/http-request.adoc[]
+
+.response
+include::{snippets}/TestArticleController/test3delete/http-response.adoc[]

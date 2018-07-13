@@ -76,6 +76,9 @@ https://jingyan.baidu.com/article/870c6fc367b4d7b03fe4beba.html
             /** Boolean. */
              B(Boolean.class);       
       第四部分title:数据库表对应model模型的属性字段。
-      
+项目启动：
+   com.jldata.smartframe.SmartframeApplication main run;
+   jar -jar ./target/smartapp.jar
+   mvn spring-boot:run       
       
       

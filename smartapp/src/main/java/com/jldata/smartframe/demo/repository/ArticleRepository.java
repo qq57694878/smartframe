@@ -32,4 +32,5 @@ public interface ArticleRepository  extends BaseRepository<Article, Long> {
     List<Object[]> queryObjectByTitleOrContent(String title, String content);
 
     List<Article> findByTitleContainingOrContentContaining(String title, String content);
+
 }

@@ -78,7 +78,7 @@ public class TestController {
     }
     @RequestMapping("test/required")
     public RestResult required(){
-        testService.tran1();
+       /* testService.tran1();*/
         return new RestResult("");
     }
 }
