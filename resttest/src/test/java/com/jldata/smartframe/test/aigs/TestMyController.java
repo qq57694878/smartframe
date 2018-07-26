@@ -83,5 +83,26 @@ public class TestMyController extends AigsTestRestBussinessBase {
         r.then().statusCode(200).body("code", Matchers.equalTo("00000"));
         r.prettyPrint();
     }
+    /**
+     *  查询我的店铺信息接口
+     * @throws IOException
+     */
+    @Test
+    public void getStoreInfo() throws IOException {
+        Map<String,Object> param = new HashMap<String,Object>();
+        Response r = RestAssured.given(this.spec).contentType("application/json").header(TOKEN,this.token)
+                .body(objectMapper.writeValueAsString(param)).post(""+PRE_PATH+"/wechat/store/getStoreInfo.json");
+        r.then().statusCode(200).body("code", Matchers.equalTo("00000"));
+        r.prettyPrint();
+    }
+    @Test
+    public void getTaskDefInfo() throws IOException {
+        Map<String,Object> param = new HashMap<String,Object>();
+        param.put("taskId","2");
+        Response r = RestAssured.given(this.spec).contentType("application/json").header(TOKEN,this.token)
+                .body(objectMapper.writeValueAsString(param)).post(""+PRE_PATH+"/wechat/customTask/getTaskDefInfo.json");
+        r.then().statusCode(200).body("code", Matchers.equalTo("00000"));
+        r.prettyPrint();
+    }
 
 }
